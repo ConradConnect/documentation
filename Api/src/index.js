@@ -1,5 +1,3 @@
-
-
 const mydaco = require('mydaco');
 
 async function main(params) {
