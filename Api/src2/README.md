@@ -1,4 +1,4 @@
-# Endpoint API Exapmle
+# Endpoint API Example
 
 The shown action creates a Bearer Token when invoked and sends it to a given server. As an example, the source code for such a server can be found in `server/`.
 
