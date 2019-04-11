@@ -5,8 +5,10 @@ async function main(call) {
 
     if (inter === 'Api' && func === 'endpoint') {
       // Called via the '/api' endpoint
-      console.info('Called by Bearer Token: ' + params.bearerToken)
-      console.info('The request had this body: ' + params.body)
+      return {
+          title: "Action was called by token " +  params.bearerToken,
+          html: "The body was " + JSON.stringify(params.body)
+      }
     }
     else {
         // Create Bearer Token
@@ -14,11 +16,12 @@ async function main(call) {
 
         const config = {
             verb: 'POST',
-            url: 'https://yourdomain.com:3000/data',
-            body: { token: bearerToken.id },
+            url: 'http://yourdomain.com:3333/data',
+            body: { token: bearerToken.bearerToken },
         };
         // Send the created token to the external server
         const result = await mydaco.interface('Api', 'request', config);
+        return { title: "Token created and sent to external server", html: "Token: " + bearerToken.bearerToken }
     }
 }
 
