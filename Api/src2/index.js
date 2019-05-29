@@ -19,7 +19,8 @@ async function main(call) {
             body: { token: bearerToken.bearerToken },
         };
         // Send the created token to the external server
-        await mydaco.interface('Api', 'request', config);
+        // Uncomment the next line if you have the server in place.
+        // await mydaco.interface('Api', 'request', config);
         return { html: "Token created and sent to external server<br/>Token: " + bearerToken.bearerToken }
     }
 }
