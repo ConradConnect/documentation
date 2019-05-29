@@ -23,7 +23,7 @@ exports.main = function main(call) {
   }
 
   if (call.inter === 'ServiceMarketplace') {
-    let html, ;
+    let html;
     if (lang === 'de') {
       html = 'Hallo Welt! Nun wurde mein drittes Widget im Service Marketplace aktiviert.';
     } else {
