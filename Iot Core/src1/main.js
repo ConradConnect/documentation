@@ -4,23 +4,18 @@ const { fillTemplate } = require('./Template.js');
 
 exports.main = async function main(call) {
 
-  const { params: { lang = 'en' } } = call
-  let title;
+  const { params: { lang = 'en' } } = call;
   let text;
 
   // retrieve all devices in account
   const devices = await getMyDevices();
   if (lang === 'de') {
-    title = 'Mein erster Geräte Service';
     text = 'Das sind deine Geräte:';
   } else {
-    title = 'My first Device Service';
     text = 'You have these devices:';
   }
   const html = fillTemplate({ text, devices });
-  return {
-    html, title
-  };
+  return { html };
 }
 
 // get all devices in the user's account

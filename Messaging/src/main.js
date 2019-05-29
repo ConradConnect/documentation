@@ -7,11 +7,9 @@ exports.main = async function (call) {
     // retrieve language from parameters
     const { params: { lang = 'en' } } = call;
 
-    let title;
     let html;
 
     if (lang === 'de') {
-        title = 'Mein Mail Service';
         try {
             const subject = 'Meine erste Mail';
             const text = 'Das ist meine erste Mail mit Conrad Connect. Sie ist als Text geschrieben';
@@ -24,7 +22,6 @@ exports.main = async function (call) {
             html = 'Hallo Welt! Das ist mein Mail Service. Leider ging etwas schief.';
         }
     } else {
-        title = 'My Mail Service';
         try {
             const subject = 'My first Mail';
             const text = 'This is my first mail with Conrad Connect. It is written as text';
@@ -37,12 +34,12 @@ exports.main = async function (call) {
             html = 'Hello World! This is my mail service. Unfortunately, something went wrong.';
         }
     }
-    return { html, title };
+    return { html };
 }
 
 function sendMail(subject, text, html) {
     const parameters = { subject, text, html };
     // send a mail using the mydaco interface 'Mail'
     // email sending is not activated in the testing environment!
-    return mydaco.interface('Mail', 'sendMail', parameters);
+    return mydaco.interface('Messaging', 'sendEmail', parameters);
 }

@@ -22,15 +22,13 @@ exports.main = function main(call) {
   // the ServiceMarketplace interface is still needed
   // to activate the widget
   if (call.inter === 'ServiceMarketplace') {
-    let html, title;
+    let html;
     if (lang === 'de') {
-      title = 'Mein erster Service';
       html = 'Hallo Welt! Nun wurde mein erstes Widget im Service Marketplace aktiviert.';
     } else {
-      title = 'My first Service';
       html = 'Hello World! My first widget has been activated in the Service Marketplace right now.';
     }
 
-    return { html, title };
+    return { html };
   }
 }

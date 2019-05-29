@@ -11,7 +11,6 @@ exports.main = async function (call) {
 
 async function handleInit(params) {
   const { lang = 'en' } = params;
-  let title;
   let html;
 
   const number = await getNumber();
@@ -20,7 +19,6 @@ async function handleInit(params) {
   const cronPatterns = ['* * * * *'];
 
   if (lang === 'de') {
-    title = 'Mein Cron Service';
     try {
       await setCron(cronPatterns);
       html = `Hallo Welt! Das ist mein Cron Service. Die aktuelle Nummer ist: <b>${number}</b>. Der Counter wird nun zurückgesetzt.`;
@@ -28,7 +26,6 @@ async function handleInit(params) {
       html = 'Hallo Welt! Das ist mein Cron Service. Leider ging etwas schief.';
     }
   } else {
-    title = 'My Cron Service';
     try {
       await setCron(cronPatterns);
       html = `Hello World! This is my cron service. The current number is<b>${number}</b>. The counter will be resetted.`;
@@ -40,7 +37,7 @@ async function handleInit(params) {
   // reset
   await setNumber(0);
 
-  return { html, title, lang };
+  return { html, lang };
 }
 
 async function handleCron() {

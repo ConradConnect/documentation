@@ -37,15 +37,13 @@ exports.main = function main(call) {
   }
 
   if (call.inter === 'ServiceMarketplace') {
-    let html, title;
+    let html;
     if (lang === 'de') {
-      title = 'Mein zweiter Widget';
       html = 'Hallo Welt! Nun wurde mein zweites Widget im Service Marketplace aktiviert.';
     } else {
-      title = 'My second Widget';
       html = 'Hello World! My second widget has been activated in the Service Marketplace right now.';
     }
 
-    return { html, title };
+    return { html };
   }
 }

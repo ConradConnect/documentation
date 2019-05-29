@@ -4,7 +4,7 @@ const mydaco = require('mydaco');
 exports.main = async function main(call) {
   if (call.inter === 'ServiceMarketplace') {
     if (call.func === 'start') {
-      return await first(call.params);
+      return await first();
     }
     if (call.func === 'interact') {
       return await second(call.params);
@@ -15,19 +15,10 @@ exports.main = async function main(call) {
   }
 }
 
-async function first(params) {
-  const { lang = 'en' } = params;
-
+async function first() {
   // retrieve all devices in account
   const devices = await getLampsAndButtons();
 
-  if (lang === 'de') {
-    title = 'Mein zweiter Geräte Service mit speziellen Geräten';
-    text = 'Das sind deine Lampen:';
-  } else {
-    title = 'My second device service with featured devices';
-    text = 'You have these lamps:';
-  }
 
   let html = 'Lamps<br>';
   for (const lamp of devices.lamps) {
@@ -40,7 +31,7 @@ async function first(params) {
   }
 
   html += `<input type="button" onclick="sendInputs()" value="OK" />`;
-  return { title, html };
+  return { html };
 }
 
 async function buttonEvent() {
@@ -51,7 +42,7 @@ async function buttonEvent() {
 
   if (storage.key) {
     const device = storage.value;
-    const data = await mydaco.interface('IotCore', 'actuate', { device, property: 'color', value: hexString });
+    await mydaco.interface('IotCore', 'actuate', { device, property: 'color', value: hexString });
   }
   return {};
 }
@@ -63,8 +54,8 @@ async function second(params) {
   }
   const message = await deleteOldTasks();
 
-  const data = await mydaco.interface('IotCore', 'createEvent', { event: 'click', device: buttonId });
-  const storageLamp = await mydaco.interface('KeyValueStore', 'put', { key: 'lampId', value: lampId });
+  await mydaco.interface('IotCore', 'createEvent', { event: 'click', device: buttonId });
+  await mydaco.interface('KeyValueStore', 'put', { key: 'lampId', value: lampId });
 
   return { html: `The service is configured. Deleted ${message.length} old events.` };
 }

@@ -4,11 +4,10 @@ async function main(call) {
     const { inter, func, params } = call
 
     if (inter === 'Api' && func === 'endpoint') {
-      // Called via the '/api' endpoint
-      return {
-          title: "Action was called by token " +  params.bearerToken,
-          html: "The body was " + JSON.stringify(params.body)
-      }
+        // Called via the '/api' endpoint
+        return {
+            html: "Action was called by token " + params.bearerToken + "<br/>The body was " + JSON.stringify(params.body)
+        }
     }
     else {
         // Create Bearer Token
@@ -20,8 +19,8 @@ async function main(call) {
             body: { token: bearerToken.bearerToken },
         };
         // Send the created token to the external server
-        const result = await mydaco.interface('Api', 'request', config);
-        return { title: "Token created and sent to external server", html: "Token: " + bearerToken.bearerToken }
+        await mydaco.interface('Api', 'request', config);
+        return { html: "Token created and sent to external server<br/>Token: " + bearerToken.bearerToken }
     }
 }
 

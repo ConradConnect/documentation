@@ -13,16 +13,13 @@ exports.main = function main(call) {
 async function handleInit(params) {
   const { lang = 'en' } = params;
 
-  let title;
   let text;
   let devices;
 
   if (lang === 'de') {
-    title = 'Mein erster Service (v3)';
     text = 'Hallo Welt! Wähle dein Lieblingsgerät:';
     devices = ['Geschirrspüler', 'Kühlschrank', 'Waschmaschine'];
   } else {
-    title = 'My first Service (v3)';
     text = 'Hello World! Choose your favorite device:';
     devices = ['Dishwasher', 'Fridge', 'Washingmachine'];
   }
@@ -31,7 +28,7 @@ async function handleInit(params) {
   // log the html just out of curiosity
   console.log(html);
 
-  return { html, title };
+  return { html };
 }
 
 async function handleIframeClose(params) {
@@ -39,13 +36,11 @@ async function handleIframeClose(params) {
   const { inputs: { device }, lang } = params;
 
   if (lang === 'de') {
-    title = 'Dein Lieblingsgerät';
     html = `Dein Lieblingsgerät ist: ${device}`;
     html += `<br><input type="button" onclick="closeWindow()" value="Schließen" />`;
   } else {
-    title = 'Your favorite device';
     html = `Your favorite device is: ${device}`;
     html += `<br><input type="button" onclick="closeWindow()" value="Close" />`;
   }
-  return { html, title };
+  return { html };
 }
