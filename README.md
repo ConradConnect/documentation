@@ -12,7 +12,7 @@
 
 ## 6 - Iot Core
 
-## 7 - Mail
+## 7 - Messaging
 
 ## 8 - Cron
 

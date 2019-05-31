@@ -1,6 +1,6 @@
 const mydaco = require('mydaco');
 
-async function main(params) {
+async function main(call) {
 
     const config = {
         verb: 'GET',
