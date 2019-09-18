@@ -7,7 +7,7 @@ async function main(call) {
         url: 'https://raw.githubusercontent.com/ConradConnect/documentation/master/External/HelloWorld.txt'
     };
 
-    const result = await mydaco.interface('Api', 'request', config);
+    const result = await mydaco.interface('External', 'request', config);
 
     return { html: result.body };
 }
